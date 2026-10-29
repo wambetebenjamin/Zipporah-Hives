@@ -35,6 +35,7 @@ html{scroll-behavior:auto}body{font-family:'Open Sans',sans-serif;color:var(--te
 /* Keep the source palette by default, and support the user's higher-contrast preference. */
 @media (prefers-contrast:more){
   .slider_area .single_slider.home-slider,.page-hero.bradcam_area,.contact_anipat,.boxed-btn3,.floating-voice{background:#b53a25!important}
-  .text-link,.info-card .card-kicker,.footer .copy-right_text .copy_right a{color:#b53a25!important}
+  .text-link,.info-card .card-kicker,.footer .copy-right_text .copy_right a,.desktop-nav a[aria-current=page],.header-join{color:#b53a25!important}
+  .header-join{border-color:#b53a25!important}
   .footer .footer_top .footer_widget ul li a,.footer .copy-right_text .copy_right{color:#555!important}
 }

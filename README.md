@@ -33,7 +33,7 @@ Public directory entries are sourced from the organisations' public pages, not r
 
 A Chromium check covered 14 pages at 320, 375, 768, 1024 and 1440 pixels in English, Swahili and French, with no horizontal overflow or undersized visible controls in those states. Mobile navigation, the filter sheet, saved keepers and language switching were exercised. The reCAPTCHA route was tested with mocked verification, not live Google keys. These checks are not a complete accessibility audit.
 
-Automated axe checks on the homepage, directory, join and account pages found WCAG AA colour-contrast failures with the preserved default template palette. A higher-contrast variant is provided for the browser or operating system `prefers-contrast: more` setting; those four pages had no automated WCAG A/AA violations in that mode. A compliant default palette requires an approved change to the original design colours.
+Automated axe checks on the homepage, directory, join and account pages found WCAG AA colour-contrast failures with the preserved default template palette. A higher-contrast variant is provided for the browser or operating system `prefers-contrast: more` setting; all 14 tested pages at 375 and 1440 pixels had no automated WCAG A/AA violations in that mode. A compliant default palette requires an approved change to the original design colours.
 
 ## Deployment
 
