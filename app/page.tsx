@@ -1,0 +1,24 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Icon } from "@/components/Icons";
+import { SectionTitle, TextLink } from "@/components/Shared";
+import { getLocale, getMessages, localize } from "@/lib/i18n";
+import { regions } from "@/lib/data";
+
+export default async function HomePage() {
+  const locale = await getLocale(); const m = getMessages(locale);
+  const services = [
+    { title: m.home.findTitle, body: m.home.findBody, href: "/keepers", icon: "pin" as const },
+    { title: m.home.learnTitle, body: m.home.learnBody, href: "/guides", icon: "book" as const },
+    { title: m.home.coopTitle, body: m.home.coopBody, href: "/coops", icon: "people" as const },
+  ];
+  const steps = [[m.home.step1, m.home.step1Body], [m.home.step2, m.home.step2Body], [m.home.step3, m.home.step3Body]];
+  return <>
+    <section className="slider_area"><div className="single_slider home-slider"><div className="container hero-inner"><div className="slider_text"><p className="eyebrow">{m.home.kicker}</p><h1>{m.home.heroLight}<strong>{m.home.heroBold}</strong></h1><p className="hero-copy">{m.home.heroText}</p><div className="hero-buttons"><Link className="boxed-btn4" href="/keepers">{m.home.heroPrimary}</Link><Link className="hero-secondary" href="/guides">{m.home.heroSecondary}</Link></div></div></div><div className="hero-photo"><Image src="/images/keeper-frame.jpg" alt="A beekeeper in protective gloves holds a honeycomb frame outdoors." fill sizes="(max-width: 767px) 100vw, 45vw" priority /></div></div></section>
+    <section className="service_area"><div className="container"><div className="row justify-content-center"><div className="col-lg-8"><div className="mb-95"><SectionTitle title={m.home.servicesTitle} intro={m.home.servicesIntro} centered /></div></div></div><div className="row justify-content-center">{services.map((service) => <div className="col-lg-4 col-md-6" key={service.title}><div className="single_service"><div className="service_thumb"><Icon name={service.icon} size={49}/></div><div className="service_content text-center"><h3>{service.title}</h3><p>{service.body}</p><TextLink href={service.href}>{m.common.learnMore}</TextLink></div></div></div>)}</div></div></section>
+    <section className="pet_care_area"><div className="container"><div className="row align-items-center"><div className="col-lg-5 col-md-6"><div className="pet_thumb"><Image src="/images/planting-together.jpg" alt="Two people tend a young plant together in a field." fill sizes="(max-width: 767px) 100vw, 40vw"/></div></div><div className="col-lg-6 offset-lg-1 col-md-6"><div className="pet_info"><div className="section_title"><p className="eyebrow">Zipporah Hives</p><h2><span>{m.home.storyLight}</span><br/>{m.home.storyBold}</h2><p>{m.home.storyText}</p><Link className="boxed-btn3" href="/about">{m.home.storyCta}</Link></div></div></div></div></div></section>
+    <section className="team_area"><div className="container"><div className="row justify-content-center"><div className="col-lg-8"><div className="mb-95"><SectionTitle title={m.home.regionsTitle} intro={m.home.regionsIntro} centered /></div></div></div><div className="row justify-content-center">{regions.slice(0, 3).map((region) => <div className="col-lg-4 col-md-6" key={region.name.en}><div className="single_team"><div className="thumb"><Image src={region.image} alt={region.alt} fill sizes="(max-width: 767px) 100vw, 33vw"/></div><div className="member_name text-center"><div className="mamber_inner"><h3>{localize(region.name, locale)}</h3></div></div><p className="region-note">{localize(region.note, locale)}</p></div></div>)}</div><div className="section-end"><Link className="boxed-btn3" href="/regions">{m.home.regionsCta}</Link><p className="photo-note">{locale === "sw" ? "Picha ni mifano, si picha za maeneo yaliyoorodheshwa." : locale === "fr" ? "Photos d'illustration, sans lien avec les lieux présentés." : "Illustrative photos, not photographs of the places listed."}</p></div></div></section>
+    <section className="how-area"><div className="container"><SectionTitle title={m.home.howTitle} intro={m.home.howIntro} centered/><div className="row how-grid">{steps.map(([title, body], index) => <div className="col-md-4" key={title}><div className="how-item"><span className="how-number">0{index + 1}</span><h3>{title}</h3><p>{body}</p></div></div>)}</div></div></section>
+    <section className="contact_anipat"><div className="container"><div className="row justify-content-center"><div className="col-lg-8"><div className="contact_text text-center"><div className="section_title"><h2>{m.home.ctaTitle}</h2><p>{m.home.ctaBody}</p></div><div className="contact_btn d-flex align-items-center justify-content-center"><Link href="/join" className="boxed-btn4">{m.home.ctaButton}</Link></div></div></div></div></div></section>
+  </>;
+}
